@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Puput, With Love Lucky.</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #090607;
+    color: #f5e9e9;
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.page.active {
+    display: flex;
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1 {
+    color: #c64b5b;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #cbbaba;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+button {
+    background: #8d2638;
+    color: white;
+    border: 1px solid #bd5362;
+    padding: 13px 25px;
+    border-radius: 30px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .3s;
+}
+
+button:hover {
+    background: #bd4053;
+    transform: scale(1.05);
+}
+
+/* HALAMAN PERTAMA */
+
+.subtitle {
+    letter-spacing: 3px;
+    font-size: 10px;
+    color: #a47b7b;
+    margin-bottom: 20px;
+}
+
+.envelope {
+    width: 190px;
+    height: 125px;
+    background: #762536;
+    position: relative;
+    margin: 35px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 35px #8d263855;
+}
+
+.envelope:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 95px solid transparent;
+    border-right: 95px solid transparent;
+    border-top: 75px solid #a33a4c;
+    z-index: 2;
+}
+
+.envelope:after {
+    content: "♥";
+    color: #f4b4b9;
+    position: absolute;
+    top: 55px;
+    left: 83px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+/* HALAMAN SURAT */
+
+.letter {
+    max-width: 380px;
+    width: 100%;
+    background: #160d10;
+    border: 1px solid #54222c;
+    border-radius: 12px;
+    padding: 30px 23px;
+    box-shadow: 0 0 30px #751c3022;
+}
+
+.letter h2 {
+    color: #d36b79;
+    margin-bottom: 25px;
+}
+
+.letter p {
+    color: #e3cece;
+    line-height: 2;
+}
+
+.signature {
+    color: #d36b79;
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* HALAMAN MAWAR */
+
+.rose {
+    position: relative;
+    width: 150px;
+    height: 210px;
+    margin: 30px auto;
+}
+
+.stem {
+    position: absolute;
+    width: 5px;
+    height: 125px;
+    background: #397346;
+    left: 73px;
+    top: 75px;
+    border-radius: 5px;
+}
+
+.leaf {
+    position: absolute;
+    width: 35px;
+    height: 17px;
+    background: #397346;
+    border-radius: 100% 0 100% 0;
+    top: 135px;
+    left: 76px;
+    transform: rotate(-20deg);
+}
+
+.flower {
+    position: absolute;
+    top: 25px;
+    left: 48px;
+    width: 55px;
+    height: 55px;
+    transform: scale(0);
+    animation: bloom 3s ease forwards;
+    animation-delay: .5s;
+}
+
+.petal {
+    position: absolute;
+    width: 32px;
+    height: 42px;
+    background: linear-gradient(135deg, #fa5268, #850d27);
+    border-radius: 70% 70% 45% 45%;
+    left: 12px;
+    top: 5px;
+    transform-origin: bottom center;
+    box-shadow: 0 0 12px #d62e4a66;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-10px); }
+.petal:nth-child(2) { transform: rotate(72deg) translateY(-10px); }
+.petal:nth-child(3) { transform: rotate(144deg) translateY(-10px); }
+.petal:nth-child(4) { transform: rotate(216deg) translateY(-10px); }
+.petal:nth-child(5) { transform: rotate(288deg) translateY(-10px); }
+
+.center {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: #4e0718;
+    border-radius: 50%;
+    top: 22px;
+    left: 17px;
+    z-index: 2;
+}
+
+@keyframes bloom {
+    to { transform: scale(1); }
+}
+
+audio {
+    display: none;
+}
+
+.small {
+    font-size: 12px;
+    color: #936a70;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="music.wav" type="audio/wav">
+</audio>
+
+<!-- HALAMAN 1 -->
+
+<section class="page active" id="home">
+
+    <div class="subtitle">A LITTLE SURPRISE FOR YOU</div>
+
+    <h1>For Puput,</h1>
+    <h1>With Love Lucky.</h1>
+
+    <p>
+        Ada sesuatu kecil yang ingin aku tunjukkan
+        buat kamu...
+    </p>
+
+    <div class="envelope" onclick="openLetter()"></div>
+
+    <p>Tap amplopnya untuk membuka 💌</p>
+
+    <div class="small">Made with love by Lucky.</div>
+
+</section>
+
+<!-- HALAMAN 2 -->
+
+<section class="page" id="letter">
+
+    <div class="letter">
+
+        <div class="subtitle">A LITTLE LETTER</div>
+
+        <h2>Dear Puput ❤️</h2>
+
+        <p>
+            Maaf ya kalo ngeselin suka bikin greget🤗💖.
+        </p>
+
+        <div class="signature">
+            — Lucky
+        </div>
+
+    </div>
+
+    <button onclick="showRose()">
+        Ada satu lagi buat kamu 🌹
+    </button>
+
+</section>
+
+<!-- HALAMAN 3 -->
+
+<section class="page" id="rosePage">
+
+    <div class="subtitle">JUST FOR YOU</div>
+
+    <h1>A Rose for Puput.</h1>
+
+    <div class="rose">
+
+        <div class="stem"></div>
+        <div class="leaf"></div>
+
+        <div class="flower">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+        </div>
+
+    </div>
+
+    <p>
+        Just one rose, for someone special.
+    </p>
+
+    <p class="small">
+        Made with a little courage, and a lot of love.
+        <br>— Lucky
+    </p>
+
+</section>
+
+<script>
+
+const music = document.getElementById("music");
+
+function changePage(id) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+}
+
+function openLetter() {
+    changePage("letter");
+
+    music.play().catch(() => {
+        console.log("Musik belum bisa diputar.");
+    });
+}
+
+function showRose() {
+    changePage("rosePage");
+}
+
+</script>
+
+</body>
+</html>
+
